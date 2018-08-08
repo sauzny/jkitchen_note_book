@@ -28,7 +28,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${junit}</version>
-			<scope>test</scope>
 		</dependency>
 
 
@@ -76,7 +75,6 @@
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-test</artifactId>
 		    <version>${spring}</version>
-		    <scope>test</scope>
 		</dependency>
 		
 		<!-- commons-io 文件读取 -->
