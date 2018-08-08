@@ -1,0 +1,133 @@
+package com.sauzny.jkitchen_note;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
+
+import org.elasticsearch.common.collect.Lists;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Sets;
+import com.google.common.primitives.Ints;
+
+/**
+ * Hello world!
+ *
+ */
+public class App {
+    
+    public List<String> listapp;
+    
+    public static void main(String[] args) throws UnknownHostException, IOException{
+        
+        StringBuilder  builder = new StringBuilder();   
+
+        System.out.println(builder.hashCode());
+        System.out.println(builder == null);
+        
+        System.getProperty("java.io.tmpdir");
+        
+        File file = new File("");
+        
+        System.out.println(File.separator);
+        
+        System.out.println("13399990000".replaceAll("(\\d{3})\\d{4}(\\d{4})","$1****$2"));
+        
+        System.out.println(null == null ? 1 : 2);
+        
+        System.out.println(UUID.randomUUID());
+        
+        List<String> list01 = Lists.newArrayList(
+                "`fact_persion` table_02 inner join `sex` table_11 on `table_02`.`p_sex`=`table_11`.`id`",
+                "`fact_persion` table_02 inner join `medal_type` table_06 on `table_02`.`medal_type`=`table_06`.`id`");
+        
+        
+        int[] ints = {1,2,3};
+        String[] strs = {"","",""};
+        // <int[]> List<int[]> java.util.Arrays.asList(int[]... a)
+        Arrays.asList(ints);
+        Arrays.asList(strs);
+        
+
+        Ints.asList(ints);
+        
+        Set<String> a = Sets.newHashSet("a","b","c");
+        Set<String> b = Sets.newHashSet("a","b","c");
+        
+        System.out.println(b.containsAll(a));
+        
+        List<Integer> list1 = Lists.newArrayList(1,2,3);
+        List<String> list2 = null;
+        
+        Print.sysout("list是否为空{}", Iterables.isEmpty(list1));
+        
+        Collections.emptyList();
+        
+        System.out.println(list1);
+        list1.add(0, 4);
+        System.out.println(list1);
+        
+        //App.checkPing();
+        
+    }
+    
+    public static void checkPing() throws UnknownHostException, IOException {
+
+        List<String> list = Files.readAllLines(Paths.get("E:/info/c.txt"), StandardCharsets.UTF_8);
+        
+        list.forEach(line->{
+            String[] temp = line.split(" - ");
+            System.out.print(temp[0] + "\t");
+        });
+        System.out.println();
+        /*
+        list.forEach(line->{
+            String[] temp = line.split(" - ");
+            System.out.print(temp[1] + "\t");
+        });
+        System.out.println();
+        */
+        for(int i=0;i<50;i++){
+            
+            for(String line : list){
+                String[] temp = line.split(" - ");
+                System.out.print(App.ping(temp[1]) + "\t");
+            }
+            System.out.println();
+        }
+    }
+    
+    public static long ping(String ip){
+
+        long a = System.currentTimeMillis();
+
+        boolean isping = false;
+        try {
+            isping = InetAddress.getByName("108.61.210.117").isReachable(1000);
+        } catch (UnknownHostException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+        long b = System.currentTimeMillis();
+        
+        if(isping){
+            return b-a;
+        }else{
+            return -1;
+        }
+    }
+}
