@@ -53,3 +53,7 @@
 |模板模式（Template Pattern）
 |访问者模式（Visitor Pattern）
 |===
+
+include::doc/create.adoc[]
+include::doc/structural.adoc[]
+include::doc/behavioral.adoc[]
