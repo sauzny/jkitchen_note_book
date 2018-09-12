@@ -1,5 +1,9 @@
 = 设计模式
 
+所有代码和文字描述，都来自于
+
+http://www.runoob.com/design-pattern/design-pattern-intro.html
+
 动手实践一遍，5 + 8 + 12 = 25种设计模式
 
 [options="header",cols="1,5,4"]
