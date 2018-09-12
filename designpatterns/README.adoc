@@ -55,5 +55,7 @@
 |===
 
 include::doc/create.adoc[]
+
 include::doc/structural.adoc[]
+
 include::doc/behavioral.adoc[]
