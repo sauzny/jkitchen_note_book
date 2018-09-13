@@ -6,13 +6,21 @@
 
 == 适配器模式（Adapter Pattern）
 
+一个接口的实现类组合使用另一个接口
+
 image::../images/适配器.jpg[]
 
 == 桥接模式（Bridge Pattern）
 
+接口A组合接口B，并设置接口B作为接口A的构造函数的参数
+
 image::../images/桥接.jpg[]
 
 == 过滤器模式（Filter、Criteria Pattern）
+
+过滤器模式（Filter Pattern）或标准模式（Criteria Pattern）
+
+ORM的参数设置，使用此模式
 
 image::../images/过滤器.jpg[]
 
@@ -22,13 +30,21 @@ image::../images/组合.jpg[]
 
 == 装饰器模式（Decorator Pattern）
 
+动态地给一个对象添加一些额外的职责。就增加功能来说，装饰器模式相比生成子类更为灵活。
+
+不直接增加子类去修改函数内容，而是使用装饰器，修改函数内容。
+
 image::../images/装饰器.jpg[]
 
 == 外观模式（Facade Pattern）
 
+将一个接口的多个实现类统一到一个类中，成为此类的成员变量
+
 image::../images/外观.jpg[]
 
 == 享元模式（Flyweight Pattern）
+
+将已经创建过的对象缓存
 
 image::../images/享元.jpg[]
 

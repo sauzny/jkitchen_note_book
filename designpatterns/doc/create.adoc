@@ -12,6 +12,8 @@ image::../images/工厂.jpg[]
 
 == 抽象工厂模式（Abstract Factory Pattern）
 
+多个工厂合并在一起，形成一个AbstractFactory，每个工厂只实现自己需要实现的那个函数
+
 image::../images/抽象工厂.jpg[]
 
 == 单例模式（Singleton Pattern）
@@ -20,8 +22,12 @@ image::../images/单例.jpg[]
 
 == 建造者模式（Builder Pattern）
 
+复杂对象的创建
+
 image::../images/建造者.jpg[]
 
 == 原型模式（Prototype Pattern）
+
+使用clone函数创造新的实例，需要注意浅拷贝和深拷贝
 
 image::../images/原型.jpg[]

@@ -1,6 +1,6 @@
 = 设计模式
 
-所有代码和文字描述，都来自于
+所有代码和大部分文字描述，都来自于
 
 http://www.runoob.com/design-pattern/design-pattern-intro.html
 
