@@ -5,7 +5,7 @@ package com.sauzny;
  */
 public class App {
     public static void main(String[] args) {
-        var hello = ("Hello jdk 11!");
+        var hello = "Hello jdk 11!";
         System.out.println(hello);
     }
 }
