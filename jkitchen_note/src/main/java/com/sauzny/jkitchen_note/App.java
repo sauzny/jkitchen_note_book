@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -25,6 +26,8 @@ public class App {
     
     public static void main(String[] args) throws UnknownHostException, IOException{
         
+    	System.out.println(new Date());
+    	
         StringBuilder  builder = new StringBuilder();   
 
         System.out.println(builder.hashCode());
@@ -71,7 +74,11 @@ public class App {
         System.out.println(list1);
         list1.add(0, 4);
         System.out.println(list1);
+        
 
+        System.out.println("13/8 = " + (13 >> 3) );
+        System.out.println("13%8 = " + (13 & (1<<3)-1) );
+        
     }
     
     
