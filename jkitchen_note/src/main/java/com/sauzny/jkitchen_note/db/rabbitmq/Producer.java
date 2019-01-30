@@ -1,7 +1,5 @@
 package com.sauzny.jkitchen_note.db.rabbitmq;
 
-import javax.annotation.PostConstruct;
-
 import org.apache.log4j.Logger;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

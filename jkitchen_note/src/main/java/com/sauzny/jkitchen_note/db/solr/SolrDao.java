@@ -2,7 +2,6 @@ package com.sauzny.jkitchen_note.db.solr;
 
 import java.io.IOException;
 
-import javax.annotation.PostConstruct;
 
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.impl.CloudSolrServer;
