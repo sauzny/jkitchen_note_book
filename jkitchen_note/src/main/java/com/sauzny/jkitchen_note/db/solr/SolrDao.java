@@ -6,6 +6,8 @@ import java.io.IOException;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.impl.CloudSolrServer;
 
+import javax.annotation.PostConstruct;
+
 public class SolrDao {
 
 	

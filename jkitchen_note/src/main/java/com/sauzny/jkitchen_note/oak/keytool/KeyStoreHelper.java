@@ -14,8 +14,7 @@ import java.security.PublicKey;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
-
-import sun.misc.BASE64Encoder;
+import java.util.Base64;
 
 public class KeyStoreHelper {
 
@@ -30,9 +29,14 @@ public class KeyStoreHelper {
 
         byte[] publicKeyBytes = publicKey.getEncoded();
         byte[] privateKeyBytes = privateKey.getEncoded();
-
+        /*
         String publicKeyBase64 = new BASE64Encoder().encode(publicKeyBytes);
         String privateKeyBase64 = new BASE64Encoder().encode(privateKeyBytes);
+        */
+
+        String publicKeyBase64 = Base64.getEncoder().encodeToString(publicKeyBytes);
+        String privateKeyBase64 = Base64.getEncoder().encodeToString(privateKeyBytes);
+
         createKeyFile(privateKeyBase64, privatePath);
         createKeyFile(publicKeyBase64, publicPath);
 

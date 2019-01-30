@@ -4,8 +4,7 @@ import java.io.*;
 import java.util.Date;  
 import java.awt.*;  
 import java.awt.image.*;  
-import javax.imageio.ImageIO;  
-import com.sun.image.codec.jpeg.*;  
+import javax.imageio.ImageIO;
 
 public class ImgCompress { 
     private Image img;  
@@ -62,14 +61,21 @@ public class ImgCompress {
      */  
     public void resize(int w, int h) throws IOException {  
         // SCALE_SMOOTH 的缩略算法 生成缩略图片的平滑度的 优先级比速度高 生成的图片质量比较好 但速度慢  
-        BufferedImage image = new BufferedImage(w, h,BufferedImage.TYPE_INT_RGB );   
-        image.getGraphics().drawImage(img, 0, 0, w, h, null); // 绘制缩小后的图  
-        File destFile = new File("C:\\temp\\456.jpg");  
-        FileOutputStream out = new FileOutputStream(destFile); // 输出到文件流  
-        // 可以正常实现bmp、png、gif转jpg  
-        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);  
-        encoder.encode(image); // JPEG编码  
-        out.close();  
+        BufferedImage dstImage = new BufferedImage(w, h,BufferedImage.TYPE_INT_RGB );
+        dstImage.getGraphics().drawImage(img, 0, 0, w, h, null); // 绘制缩小后的图
+        File destFile = new File("C:\\temp\\456.jpg");
+
+        // sun公司的私有方法
+        /*
+        FileOutputStream out = new FileOutputStream(destFile); // 输出到文件流
+        // 可以正常实现bmp、png、gif转jpg
+        JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(out);
+        encoder.encode(image); // JPEG编码
+        out.close();
+        */
+
+
+        ImageIO.write(dstImage/*"GIF"*/, "456.jpg" /* format desired */ , destFile /* target */ );
     }  
 
 }
