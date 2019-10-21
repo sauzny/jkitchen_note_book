@@ -82,6 +82,15 @@ public class App {
         System.out.println(Long.MAX_VALUE);
         System.out.println(Long.MIN_VALUE);
 
+        System.out.println(Integer.MAX_VALUE);
+        System.out.println(Integer.MIN_VALUE);
+        System.out.println(System.currentTimeMillis());
+
+        // 2147483647
+        // 1557282752529
+        // 1557282878918
+        // 20190507144103045
+
         /**
          * Twitter_Snowflake<br>
          * SnowFlake 的结构如下(每部分用-分开):<br>

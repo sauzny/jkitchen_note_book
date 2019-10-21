@@ -57,6 +57,7 @@ public class Time {
     
     
     public static void main(String[] args) {
+        System.out.println(java.util.TimeZone.getDefault());
         
         // 取当前日期：
         LocalDate today = LocalDate.now(); // -> 2014-12-24

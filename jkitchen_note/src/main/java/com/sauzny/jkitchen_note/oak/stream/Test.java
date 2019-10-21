@@ -15,10 +15,13 @@ import lombok.Data;
 public class Test {
 
     public static void main(String[] args) {
-        
+
+        Lists.newArrayList(4, 5, 6, 8).stream().forEach(i -> {
+            System.out.println(i);
+        });
         
         List<String> list = Lists.newArrayList("1","2","3");
-        
+
         // 并行处理
         list.parallelStream();
         

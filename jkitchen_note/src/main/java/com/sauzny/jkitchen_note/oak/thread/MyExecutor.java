@@ -1,5 +1,7 @@
 package com.sauzny.jkitchen_note.oak.thread;
 
+import java.util.Iterator;
+import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -44,20 +46,38 @@ public class MyExecutor extends Thread {
 
 	public void run() {
 		try {
-			System.out.println("[" + this.index + "] start....");
+			System.out.println(Thread.currentThread().getName() + " [" + this.index + "] start....");
 			Thread.sleep((int) (Math.random() * 10000));
-			System.out.println("[" + this.index + "] end.");
+			System.out.println(Thread.currentThread().getName() + " [" + this.index + "] end.");
+
+			Map map=Thread.getAllStackTraces(); //也可以map<Thread, StackTraceElement[]>
+			System.out.println("当前线程数："+map.size());
+			Iterator it=map.keySet().iterator();
+			while (it.hasNext()) {
+				Thread t=(Thread) it.next(); //
+				System.out.println(t.getName());
+			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	public static void main(String args[]) {
+
+
+		MyExecutor myExecutor100 = new MyExecutor(100);
+		myExecutor100.setName("自定义thread" + 100);
+		myExecutor100.start();
+
+
 		ExecutorService service = Executors.newFixedThreadPool(4);
-		for (int i = 0; i < 10; i++) {
-			service.execute(new MyExecutor(i));
+		for (int i = 0; i < 3; i++) {
+			MyExecutor myExecutor = new MyExecutor(i);
+			myExecutor.setName("自定义thread" + i);
+			service.execute(myExecutor);
 			// service.submit(new MyExecutor(i));
-			System.out.println("------------");
+			//System.out.println("------------");
 		}
 		System.out.println("submit finish");
 		service.shutdown();

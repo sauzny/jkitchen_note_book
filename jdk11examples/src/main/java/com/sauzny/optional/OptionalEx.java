@@ -12,6 +12,11 @@ public class OptionalEx {
 
     public static void main(String[] args) {
 
+        Optional foo = Optional.empty();
+        foo.orElse("abc");
+        foo.ifPresent(System.out::println);
+        StringEx.printSplitLine();
+
         // 这会出现一个空指针
         //Optional foo02 = Optional.of(null);
         //System.out.println(foo02);
