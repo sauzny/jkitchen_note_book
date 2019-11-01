@@ -6,7 +6,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 
 public class AppTest {
@@ -23,8 +23,8 @@ public class AppTest {
             
         }
     }
-    
-    @Test
+
+    //@Test
     public void foo02() throws InterruptedException, ExecutionException{
         
         final String jr = "";

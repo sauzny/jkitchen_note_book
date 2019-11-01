@@ -6,12 +6,12 @@ import java.nio.channels.SocketChannel;
 import java.util.Date;
 import java.util.Scanner;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 public class EpollBugClient {
     
     //客户端
-    @Test
+    //@Test
     public void client() throws Exception {
         //1. 获取socketChannel
         SocketChannel sChannel = SocketChannel.open();

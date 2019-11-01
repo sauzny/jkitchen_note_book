@@ -9,12 +9,12 @@ import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 public class EpollBugServer {
 
     //服务端
-    @Test
+    //@Test
     public void server() throws Exception {
         //1. 获取服务端通道
         ServerSocketChannel ssChannel = ServerSocketChannel.open();

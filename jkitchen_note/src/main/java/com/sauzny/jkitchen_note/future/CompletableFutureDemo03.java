@@ -4,7 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import com.sauzny.jkitchen_note.Print;
 
@@ -25,8 +25,8 @@ import com.sauzny.jkitchen_note.Print;
  **************************************************************************
  */
 public class CompletableFutureDemo03 {
-    
-    @Test
+
+    //@Test
     public void test_acceptEither(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -41,8 +41,8 @@ public class CompletableFutureDemo03 {
         
         Print.sysoutThree("acceptEither","出现第一个完成的future时，就继续执行", result_acceptEither.join());
     }
-    
-    @Test
+
+    //@Test
     public void test_applyToEither(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -57,9 +57,9 @@ public class CompletableFutureDemo03 {
         Print.sysoutThree("applyToEither","出现第一个完成的future时，就继续执行", result_applyToEither.join());
     }
 
-    
-    
-    @Test
+
+
+    //@Test
     public void test_runAfterBoth(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -76,7 +76,7 @@ public class CompletableFutureDemo03 {
         
     }
 
-    @Test
+    //@Test
     public void test_runAfterEither(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -97,7 +97,7 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午10:32:18
      */
-    @Test
+    //@Test
     public void test_thenAccept(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -110,8 +110,8 @@ public class CompletableFutureDemo03 {
         Print.sysoutThree("thenAccept","注册完成事件，可以理解为回调函数", resultThenAccept.join());
 
     }
-    
-    @Test
+
+    //@Test
     public void test_thenAcceptBoth(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -135,7 +135,7 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午10:49:02
      */
-    @Test
+    //@Test
     public void test_thenApply(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -155,7 +155,7 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午9:33:25
      */
-    @Test
+    //@Test
     public void test_thenCombine(){
         
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -180,7 +180,7 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午9:33:25
      */
-    @Test
+    //@Test
     public void test_thenCompose(){
         
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -197,7 +197,7 @@ public class CompletableFutureDemo03 {
         Print.sysoutThree("CompletableFuture.thenCompose","任意一个完成，获取第一个完成的结果", resultThenCompose01.join());
     }
 
-    @Test
+    //@Test
     public void test_thenRun(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  

@@ -1,10 +1,8 @@
 package com.sauzny.jkitchen_note.stream;
 
+import com.google.common.collect.Lists;
+
 import java.util.List;
-
-import org.elasticsearch.common.collect.Lists;
-
-import lombok.Data;
 
 public class Paixu {
 
@@ -42,12 +40,27 @@ public class Paixu {
     }
 }
 
-@Data
 class StudentPaixu {
 
     private Integer id;
     private String name;
-    
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public StudentPaixu(Integer id, String name) {
         super();
         this.id = id;

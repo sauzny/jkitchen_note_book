@@ -7,7 +7,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 import com.sauzny.jkitchen_note.Print;
 
@@ -52,7 +52,7 @@ public class CompletableFutureDemo02 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月28日 下午6:22:58
      */
-    @Test
+    //@Test
     public void foo01(){
         
         
@@ -116,7 +116,7 @@ public class CompletableFutureDemo02 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午8:37:38
      */
-    @Test
+    //@Test
     public void foo02(){
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
@@ -143,8 +143,8 @@ public class CompletableFutureDemo02 {
         Print.sysoutThree("CompletableFuture.completedFuture","把 一个Object给Futurte了，当测试或者写一些适配器层时可能非常有用。", completedFuture.join());
         
     }
-    
-    @Test
+
+    //@Test
     public void foo03(){
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         

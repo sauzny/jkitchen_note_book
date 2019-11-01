@@ -3,7 +3,7 @@ package com.sauzny.jkitchen_note.future;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import org.junit.Test;
+//import org.junit.Test;
 
 /**
  * *************************************************************************
@@ -32,8 +32,8 @@ public class CompletableFutureDemo01 {
         foo01 没有考虑异常的情况
         foo02 考虑异常的情况，使用 completableFuture.completeExceptionally(e);
      */
-    
-    @Test
+
+    //@Test
     public void foo01(){
         CompletableFuture<String> completableFuture = new CompletableFuture<String>();
         new Thread(new Runnable() {
@@ -65,8 +65,8 @@ public class CompletableFutureDemo01 {
         }
 
     }
-    
-    @Test
+
+    //@Test
     public void foo02(){
         
         CompletableFuture<String> completableFuture= new CompletableFuture<String>();
