@@ -1,6 +1,0 @@
-	string date;
-	integer proxyNo;
-	integer proxyType;
-	string alipayAccount;
-	string alipayName;
-	integer amount;
