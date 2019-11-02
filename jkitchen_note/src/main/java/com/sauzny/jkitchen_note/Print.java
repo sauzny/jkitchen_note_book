@@ -3,7 +3,16 @@ package com.sauzny.jkitchen_note;
 public final class Print {
 
     private Print(){}
-    
+
+
+    public static void hr(){
+        System.out.println(String.format("===================分割线==================="));
+    }
+
+    public static void hr(String message){
+        System.out.println(String.format("===================%s，分割线===================", message));
+    }
+
     public static void sysoutThree(final Object... args){
         sysout("方法：{}\t说明：{}\t结果：{}", args);;
     }
