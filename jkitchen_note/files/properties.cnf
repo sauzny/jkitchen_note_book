@@ -1,0 +1,11 @@
+[one]
+port=5259
+dir=/tmp/fdsojkkjsdh/
+#zhushi=gbk
+shell="abc abc"
+name=
+word=hdvbuhsdgf
+
+[two]
+_max_allowed_packet = 64M
+array=aaa,bbb,ccc
