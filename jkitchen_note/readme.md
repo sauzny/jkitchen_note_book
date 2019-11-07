@@ -13,3 +13,8 @@
 - `com.sauzny.jkitchen_note.jvm` jvm运行时信息、系统变量
 - `com.sauzny.jkitchen_note.keytool` 生成公钥和私钥
 - `com.sauzny.jkitchen_note.math` BigDecimal的使用
+- `com.sauzny.jkitchen_note.optional` optional
+- `com.sauzny.jkitchen_note.ping` ping
+- `com.sauzny.jkitchen_note.stream` stream
+- `com.sauzny.jkitchen_note.string` 字符串处理
+- `com.sauzny.jkitchen_note.swing` swing
