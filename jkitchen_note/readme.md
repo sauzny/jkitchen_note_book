@@ -18,3 +18,7 @@
 - `com.sauzny.jkitchen_note.stream` stream
 - `com.sauzny.jkitchen_note.string` 字符串处理
 - `com.sauzny.jkitchen_note.swing` swing
+- `com.sauzny.jkitchen_note.thread` 多线程、线程池、阻塞队列
+- `com.sauzny.jkitchen_note.time` 日期时间
+- `com.sauzny.jkitchen_note.trycatchfinally` trycatchfinally
+- `com.sauzny.jkitchen_note.uuid` uuid

@@ -5,11 +5,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
-
-//import org.junit.Test;
 
 import com.sauzny.jkitchen_note.Print;
+import org.junit.jupiter.api.Test;
 
 /**
  * *************************************************************************
@@ -52,7 +50,7 @@ public class CompletableFutureDemo02 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月28日 下午6:22:58
      */
-    //@Test
+    @Test
     public void foo01(){
         
         
@@ -110,7 +108,7 @@ public class CompletableFutureDemo02 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午8:37:38
      */
-    //@Test
+    @Test
     public void foo02(){
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
@@ -138,7 +136,7 @@ public class CompletableFutureDemo02 {
         
     }
 
-    //@Test
+    @Test
     public void foo03(){
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
