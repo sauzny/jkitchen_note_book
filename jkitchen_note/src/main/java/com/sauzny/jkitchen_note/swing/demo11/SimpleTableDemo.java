@@ -26,14 +26,14 @@ public class SimpleTableDemo extends JPanel {
 
         //创建显示数据
         Object[][] data = {
-                { "Kathy", "Smith", "Snowboarding", new Integer(5),
-                        new Boolean(false) },
-                { "John", "Doe", "Rowing", new Integer(3), new Boolean(true) },
-                { "Sue", "Black", "Knitting", new Integer(2),
-                        new Boolean(false) },
-                { "Jane", "White", "Speed reading", new Integer(20),
-                        new Boolean(true) },
-                { "Joe", "Brown", "Pool", new Integer(10), new Boolean(false) } };
+                { "Kathy", "Smith", "Snowboarding", 5,
+                        Boolean.FALSE},
+                { "John", "Doe", "Rowing", 3, Boolean.TRUE},
+                { "Sue", "Black", "Knitting", 2,
+                        Boolean.FALSE},
+                { "Jane", "White", "Speed reading", 20,
+                        Boolean.TRUE},
+                { "Joe", "Brown", "Pool", 10, Boolean.FALSE} };
         
         /*
          * JTable还提供了一个重载的构造方法,传入两个Vector

@@ -1,6 +1,7 @@
 package com.sauzny.jkitchen_note.stream;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -60,10 +61,10 @@ public class Test {
             System.out.println(number.getClass().getSimpleName());
         }
         
-        BigDecimal sum = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce((tempSum, item) -> tempSum.add(item)).get();
-        BigDecimal min = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce((tempMin, item) -> tempMin.min(item)).get();
-        BigDecimal max = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce((tempMax, item) -> tempMax.max(item)).get();
-        BigDecimal avg = sum.divide(new BigDecimal(numberList.size()), 2, BigDecimal.ROUND_HALF_EVEN);
+        BigDecimal sum = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce(BigDecimal::add).get();
+        BigDecimal min = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce(BigDecimal::min).get();
+        BigDecimal max = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce(BigDecimal::max).get();
+        BigDecimal avg = sum.divide(new BigDecimal(numberList.size()), 2, RoundingMode.HALF_EVEN);
         
         System.out.println(sum);
         System.out.println(min);
