@@ -6,23 +6,6 @@ import java.lang.management.OperatingSystemMXBean;
 import java.lang.management.RuntimeMXBean;
 import java.util.List;
 
-/**
- * *************************************************************************
- * 
- * @文件名称: Lifecycle.java
- *
- * @包路径 : com.sauzny.javaknife.jvm
- *
- * @版权所有: Personal liujinxin (C) 2016
- *
- * @类描述:
- * 
- * @创建人: ljx
- *
- * @创建时间: 2016年9月23日 - 下午3:48:57
- *
- **************************************************************************
- */
 public final class Lifecycle {
 
     private Lifecycle() {}
@@ -54,15 +37,13 @@ public final class Lifecycle {
         System.out.println("jvm信息：" + vmName);
 
         // 注册 ShutdownHook
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                try {
-                    end();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                end();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        });
+        }));
         
         return "";
     }

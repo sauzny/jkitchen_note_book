@@ -5,8 +5,6 @@ import org.junit.jupiter.api.Test;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-//import org.junit.Test;
-
 /**
  * *************************************************************************
  * @文件名称: CompletableFutureDemo01.java
