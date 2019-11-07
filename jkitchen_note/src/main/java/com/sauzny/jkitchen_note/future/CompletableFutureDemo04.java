@@ -4,9 +4,8 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-//import org.junit.Test;
-
 import com.sauzny.jkitchen_note.Print;
+import org.junit.jupiter.api.Test;
 
 /**
  * *************************************************************************
@@ -28,7 +27,7 @@ public class CompletableFutureDemo04 {
 
     /**
      * 这三个方法都能处理异常，
-     *                  参数                                                              处理过程                                                                    
+     *                  参数                    处理过程
      * handle           result,exception       可以处理正确结果，和异常两种逻辑的代码         
      * whenComplete     result,exception       可以记录正确结果，和异常两种逻辑的代码
      * exceptionally    exception              只能处理异常
@@ -39,7 +38,7 @@ public class CompletableFutureDemo04 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 下午2:32:19
      */
-    //@Test
+    @Test
     public void test_handle(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -70,7 +69,7 @@ public class CompletableFutureDemo04 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 下午3:17:04
      */
-    //@Test
+    @Test
     public void test_whenComplete(){
                 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
@@ -96,7 +95,7 @@ public class CompletableFutureDemo04 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 下午1:49:48
      */
-    //@Test
+    @Test
     public void test_exceptionally(){
         
         ExecutorService executor = Executors.newFixedThreadPool(5);  
