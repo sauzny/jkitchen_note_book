@@ -7,6 +7,7 @@
   - 快速排序
 - `com.sauzny.jkitchen_note.clone` 对象克隆
 - `com.sauzny.jkitchen_note.collections` 集合操作
+- `com.sauzny.jkitchen_note.charset` 字符集
 - `com.sauzny.jkitchen_note.epollbug` 对象克隆
 - `com.sauzny.jkitchen_note.file` 文件读写
 - `com.sauzny.jkitchen_note.future` CompletableFuture与线程池结合使用，控制流程，处理异常
