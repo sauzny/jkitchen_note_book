@@ -1,4 +1,4 @@
-package com.sauzny.time;
+package com.sauzny.jkitchen_note.time;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
