@@ -56,7 +56,22 @@ public class ProcessEx {
         }
     }
 
+    public static void dfh(){
+
+        Charset charset = StandardCharsets.UTF_8;
+
+        ProcessBuilder pb = new ProcessBuilder();
+        pb.command("ssh root@172.16.8.211 \"df -h\"");
+        try {
+            Process p = pb.start();
+            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream(), "GBK"));
+            br.lines().forEach(System.out::println);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        ProcessEx.ls();
+        ProcessEx.dfh();
     }
 }
