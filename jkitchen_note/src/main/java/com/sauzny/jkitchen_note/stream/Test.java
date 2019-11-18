@@ -48,7 +48,8 @@ public class Test {
         
         List<Student> studentList = Lists.newArrayList(s1,s2,s3);
         
-        // 
+        //
+        //Map<Integer, Student> map = studentList.stream().collect(Collectors.toMap(Student::getId, student -> student));
         Map<Integer, String> map = studentList.stream().collect(Collectors.toMap(Student::getId, Student::getName));
         
         list.stream().map(value -> new Student()).collect(Collectors.toList());
