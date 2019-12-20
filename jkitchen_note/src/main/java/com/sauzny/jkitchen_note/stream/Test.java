@@ -14,6 +14,11 @@ public class Test {
 
     public static void main(String[] args) {
 
+        // 空集合的stream
+        List<String> elist = Lists.newArrayList();
+        List<Integer> eilist = elist.stream().map(String::length).collect(Collectors.toList());
+        System.out.println(eilist);
+
         Lists.newArrayList(4, 5, 6, 8).stream().forEach(i -> {
             System.out.println(i);
         });
