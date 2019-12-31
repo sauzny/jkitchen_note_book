@@ -2,6 +2,7 @@ package com.sauzny.jkitchen_note.stream;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -19,15 +20,24 @@ public class Test {
         List<Integer> eilist = elist.stream().map(String::length).collect(Collectors.toList());
         System.out.println(eilist);
 
+        String values = "1,2,3";
+        elist.addAll(Arrays.asList(values.split(",")).stream().map(v -> {
+            elist.add(v+"++");
+            return v+"_";
+        }).collect(Collectors.toList()));
+
+        System.out.println(elist);
+
         Lists.newArrayList(4, 5, 6, 8).stream().forEach(i -> {
             System.out.println(i);
         });
-        
+
         List<String> list = Lists.newArrayList("1","2","3");
 
-        // 并行处理
-        list.parallelStream();
-        
+        // 并行处理 顺序会打乱
+        // 与 collect 配合使用，避免出现，元素还没有计算完旧轮询结束
+        // list.parallelStream();
+
         // map转换数据类型
         List<Integer> list1 = list.stream().map(value -> Integer.parseInt(value)).collect(Collectors.toList());
         
