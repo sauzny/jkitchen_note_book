@@ -5,11 +5,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Supplier;
-
-//import org.junit.Test;
 
 import com.sauzny.jkitchen_note.Print;
+import org.junit.jupiter.api.Test;
 
 /**
  * *************************************************************************
@@ -52,24 +50,21 @@ public class CompletableFutureDemo02 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月28日 下午6:22:58
      */
-    //@Test
+    @Test
     public void foo01(){
         
         
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
         // 执行 CompletableFuture
-        CompletableFuture<String> resultCompletableFuture = CompletableFuture.supplyAsync(new Supplier<String>() {  
-            @Override  
-            public String get() {  
-                try {  
-                    TimeUnit.SECONDS.sleep(3);  
-                } catch (InterruptedException e) {  
-                    // TODO Auto-generated catch block  
-                    e.printStackTrace();  
-                }  
-                return "hello";  
-            }  
+        CompletableFuture<String> resultCompletableFuture = CompletableFuture.supplyAsync(() -> {
+            try {
+                TimeUnit.SECONDS.sleep(3);
+            } catch (InterruptedException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return "hello";
         }, executor);  // 
         
         // executor 是自定义线程池，线程数量多不是必然快，但是大部分时候真的快……
@@ -82,26 +77,23 @@ public class CompletableFutureDemo02 {
         
         
         // lambda 写法 
-        CompletableFuture<String> resultCompletableFuture1 = CompletableFuture.supplyAsync(() -> TestFunc.f0());
+        CompletableFuture<String> resultCompletableFuture1 = CompletableFuture.supplyAsync(TestFunc::f0);
         
         // runAsync() 功能等同于 supplyAsync()，
         // 区别在于，参数需要Runnable，因此它返回CompletableFuture<Void>作为Runnable不返回任何值。
         // 也就是说，对于Future的结果你还不需要继续处理，此时可以使用runAsync()
-        CompletableFuture<Void> resultCompletableFuture2 = CompletableFuture.runAsync(() -> TestFunc.f0());
+        CompletableFuture<Void> resultCompletableFuture2 = CompletableFuture.runAsync(TestFunc::f0);
         
         // 获取结果 使用get方法
         try {
             System.out.println(resultCompletableFuture.get());
             // get方法可以设置超时
             // resultCompletableFuture.get(timeout, unit);
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | ExecutionException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (ExecutionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
-        
+        }
+
         // 获取结果 使用join方法，在内部捕获了异常
         System.out.println(resultCompletableFuture.join());
         
@@ -116,13 +108,13 @@ public class CompletableFutureDemo02 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午8:37:38
      */
-    //@Test
+    @Test
     public void foo02(){
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
         // 创建两个Future任务
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
         
         // 这两个任务都不使用 get 方法
         // 分别测试api  anyOf allOf
@@ -144,15 +136,15 @@ public class CompletableFutureDemo02 {
         
     }
 
-    //@Test
+    @Test
     public void foo03(){
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
         // 创建两个Future任务
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
-        CompletableFuture<String> cf3 = CompletableFuture.supplyAsync(() -> TestFunc.f3(), executor);
-        CompletableFuture<String> cf4 = CompletableFuture.supplyAsync(() -> TestFunc.f4(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
+        CompletableFuture<String> cf3 = CompletableFuture.supplyAsync(TestFunc::f3, executor);
+        CompletableFuture<String> cf4 = CompletableFuture.supplyAsync(TestFunc::f4, executor);
         
 
         cf1.obtrudeValue("强制赋值");

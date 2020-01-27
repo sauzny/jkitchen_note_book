@@ -1,6 +1,8 @@
 package com.sauzny.jkitchen_note.stream;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.Arrays;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.Map;
@@ -13,15 +15,29 @@ public class Test {
 
     public static void main(String[] args) {
 
+        // 空集合的stream
+        List<String> elist = Lists.newArrayList();
+        List<Integer> eilist = elist.stream().map(String::length).collect(Collectors.toList());
+        System.out.println(eilist);
+
+        String values = "1,2,3";
+        elist.addAll(Arrays.asList(values.split(",")).stream().map(v -> {
+            elist.add(v+"++");
+            return v+"_";
+        }).collect(Collectors.toList()));
+
+        System.out.println(elist);
+
         Lists.newArrayList(4, 5, 6, 8).stream().forEach(i -> {
             System.out.println(i);
         });
-        
+
         List<String> list = Lists.newArrayList("1","2","3");
 
-        // 并行处理
-        list.parallelStream();
-        
+        // 并行处理 顺序会打乱
+        // 与 collect 配合使用，避免出现，元素还没有计算完旧轮询结束
+        // list.parallelStream();
+
         // map转换数据类型
         List<Integer> list1 = list.stream().map(value -> Integer.parseInt(value)).collect(Collectors.toList());
         
@@ -47,7 +63,8 @@ public class Test {
         
         List<Student> studentList = Lists.newArrayList(s1,s2,s3);
         
-        // 
+        //
+        //Map<Integer, Student> map = studentList.stream().collect(Collectors.toMap(Student::getId, student -> student));
         Map<Integer, String> map = studentList.stream().collect(Collectors.toMap(Student::getId, Student::getName));
         
         list.stream().map(value -> new Student()).collect(Collectors.toList());
@@ -60,10 +77,10 @@ public class Test {
             System.out.println(number.getClass().getSimpleName());
         }
         
-        BigDecimal sum = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce((tempSum, item) -> tempSum.add(item)).get();
-        BigDecimal min = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce((tempMin, item) -> tempMin.min(item)).get();
-        BigDecimal max = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce((tempMax, item) -> tempMax.max(item)).get();
-        BigDecimal avg = sum.divide(new BigDecimal(numberList.size()), 2, BigDecimal.ROUND_HALF_EVEN);
+        BigDecimal sum = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce(BigDecimal::add).get();
+        BigDecimal min = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce(BigDecimal::min).get();
+        BigDecimal max = numberList.stream().map(value -> new BigDecimal(value.toString())).reduce(BigDecimal::max).get();
+        BigDecimal avg = sum.divide(new BigDecimal(numberList.size()), 2, RoundingMode.HALF_EVEN);
         
         System.out.println(sum);
         System.out.println(min);

@@ -1,17 +1,16 @@
 package com.sauzny.jkitchen_note.thread;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-//import org.junit.Test;
-
-
 public class AppTest {
 
-    //@Test
+    @Test
     public void foo01(){
         ExecutorService service = Executors.newFixedThreadPool(20);
         
@@ -24,7 +23,7 @@ public class AppTest {
         }
     }
 
-    //@Test
+    @Test
     public void foo02() throws InterruptedException, ExecutionException{
         
         final String jr = "";

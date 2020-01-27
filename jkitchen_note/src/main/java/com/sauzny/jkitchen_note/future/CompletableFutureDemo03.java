@@ -7,6 +7,7 @@ import java.util.concurrent.Executors;
 //import org.junit.Test;
 
 import com.sauzny.jkitchen_note.Print;
+import org.junit.jupiter.api.Test;
 
 /**
  * *************************************************************************
@@ -26,15 +27,15 @@ import com.sauzny.jkitchen_note.Print;
  */
 public class CompletableFutureDemo03 {
 
-    //@Test
+    @Test
     public void test_acceptEither(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
         
-        CompletableFuture<Void> result_acceptEither = cf1.acceptEither(cf2, arg -> TestFunc.consumer(arg));
+        CompletableFuture<Void> result_acceptEither = cf1.acceptEither(cf2, TestFunc::consumer);
         
         // cf1.acceptEitherAsync(other, action);
         // cf1.acceptEitherAsync(other, action, executor);
@@ -42,15 +43,15 @@ public class CompletableFutureDemo03 {
         Print.sysoutThree("acceptEither","出现第一个完成的future时，就继续执行", result_acceptEither.join());
     }
 
-    //@Test
+    @Test
     public void test_applyToEither(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
         
-        CompletableFuture<Integer> result_applyToEither = cf1.applyToEither(cf2, arg -> arg.length());
+        CompletableFuture<Integer> result_applyToEither = cf1.applyToEither(cf2, String::length);
         
         // cf1.applyToEitherAsync(other, fn);
         // cf1.applyToEitherAsync(other, fn, executor);
@@ -59,13 +60,13 @@ public class CompletableFutureDemo03 {
 
 
 
-    //@Test
+    @Test
     public void test_runAfterBoth(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
         
         CompletableFuture<Void> result_runAfterBoth = cf1.runAfterBoth(cf2, () -> System.out.println("hello world"));
         
@@ -76,13 +77,13 @@ public class CompletableFutureDemo03 {
         
     }
 
-    //@Test
+    @Test
     public void test_runAfterEither(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
         
         CompletableFuture<Void> result_runAfterEither = cf1.runAfterEither(cf2, () -> System.out.println("hello world"));
         
@@ -97,12 +98,12 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午10:32:18
      */
-    //@Test
+    @Test
     public void test_thenAccept(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
         // 注册完成事件，就是很单纯的注册事件
         CompletableFuture<Void> resultThenAccept = cf1.thenAccept(result->System.out.println("task1 done,result:"+result));
         // cf1.thenAcceptAsync(action)
@@ -111,18 +112,18 @@ public class CompletableFutureDemo03 {
 
     }
 
-    //@Test
+    @Test
     public void test_thenAcceptBoth(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
 
         // 两个Future注册事件，参考thenCombine。
         // 与thenCombine的参数对比：
         // thenCombine-> CompletionStage,BiFunction
         // thenAcceptBoth-> CompletionStage,BiConsumer
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
         CompletableFuture<Void> resultThenAccept = cf1.thenAcceptBoth(cf2, (r1, r2) -> System.out.println(r1+" "+r2));
         //cf1.thenAcceptBothAsync(other, action);
         //cf1.thenAcceptBothAsync(other, action, executor);
@@ -135,15 +136,15 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午10:49:02
      */
-    //@Test
+    @Test
     public void test_thenApply(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
         
         // 
-        CompletableFuture<Integer> resultThenApply = cf1.thenApply(result -> result.length());
+        CompletableFuture<Integer> resultThenApply = cf1.thenApply(String::length);
         
         // cf1.thenApplyAsync(fn);
         // cf1.thenApplyAsync(fn, executor);
@@ -155,17 +156,17 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午9:33:25
      */
-    //@Test
+    @Test
     public void test_thenCombine(){
         
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
         
         
         // 合并两个任务的结果 
         // thenCombine
-        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(() -> TestFunc.f2(), executor);
+        CompletableFuture<String> cf2 = CompletableFuture.supplyAsync(TestFunc::f2, executor);
         CompletableFuture<String> resultThenCombine01 = cf1.thenCombine(cf2, (r1, r2) -> r1+" "+r2);
         // 多开一个线程去执行
         // cf1.thenCombineAsync(other, fn);
@@ -180,12 +181,12 @@ public class CompletableFutureDemo03 {
      * @返回 void
      * @创建人  ljx 创建时间 2017年12月29日 上午9:33:25
      */
-    //@Test
+    @Test
     public void test_thenCompose(){
         
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
         
         // 第一个任务完成后的result，传递给第二个Future使用。
         // thenCompose
@@ -197,12 +198,12 @@ public class CompletableFutureDemo03 {
         Print.sysoutThree("CompletableFuture.thenCompose","任意一个完成，获取第一个完成的结果", resultThenCompose01.join());
     }
 
-    //@Test
+    @Test
     public void test_thenRun(){
 
         ExecutorService executor = Executors.newFixedThreadPool(5);  
         
-        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(() -> TestFunc.f1(), executor);
+        CompletableFuture<String> cf1 = CompletableFuture.supplyAsync(TestFunc::f1, executor);
         
         CompletableFuture<Void> result_thenRun = cf1.thenRun(() -> System.out.println("一个Runable") );
         

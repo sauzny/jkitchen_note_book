@@ -18,12 +18,9 @@ public class FutureDemo {
         
         try {
             System.out.println(result.get());
-        } catch (InterruptedException e) {
+        } catch (InterruptedException | ExecutionException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } catch (ExecutionException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } 
+        }
     }
 }

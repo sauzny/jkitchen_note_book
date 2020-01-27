@@ -1,15 +1,13 @@
 package com.sauzny.jkitchen_note.thread;
 
+import org.junit.jupiter.api.Test;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-//import org.junit.Test;
-
 public class WatchWorks {
 
-    
-    
-    //@Test
+    @Test
     public void foo01(){
         
         ExecutorService serviceWork = Executors.newFixedThreadPool(2);

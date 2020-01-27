@@ -54,8 +54,23 @@ public class MyRandomAccessFile {
             e.printStackTrace();
         }
     }
+    public static void deleteLastOne(){
+        Path path = Paths.get("files/properties.cnf");
+        Charset charset = StandardCharsets.UTF_8;
+
+        try(RandomAccessFile raf = new RandomAccessFile(path.toFile(),"rw");){
+            raf.seek(path.toFile().length() - 1);
+            raf.write(new byte[0]);
+            //byte[] bytes = new byte[1024];
+            //raf.read(bytes);
+            //System.out.println(new String(bytes, charset));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public static void main(String[] args) {
-        MyRandomAccessFile.rw();
+        MyRandomAccessFile.deleteLastOne();
     }
 }

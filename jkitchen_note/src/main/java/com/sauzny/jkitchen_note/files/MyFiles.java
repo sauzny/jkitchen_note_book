@@ -1,7 +1,9 @@
 package com.sauzny.jkitchen_note.files;
 
+import com.google.common.collect.Lists;
 import com.sauzny.jkitchen_note.Print;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
@@ -55,7 +57,33 @@ public class MyFiles {
 
     }
 
+    public static void files3(){
+
+        Path path = Paths.get("E:\\doc\\2019\\11月12月封闭");
+        Charset charset = StandardCharsets.UTF_8;
+
+        Lists.newArrayList(path.toFile().list()).forEach(name ->{
+            System.out.println(name);
+            for(byte b : name.getBytes(charset)){
+                System.out.print(" " + b);
+            }
+            System.out.println();
+        });
+    }
+
+    // 测试删除
+    public static void files4(){
+        Path path = Paths.get("F:\\temp\\filetest\\");
+        File[] files = path.toFile().listFiles();
+        for(File file : files){
+            if("1.txt".equals(file.getName())){
+                file.delete();
+            }
+        }
+        System.out.println(files.length);
+    }
+
     public static void main(String[] args) {
-        MyFiles.files2();
+        MyFiles.files4();
     }
 }
