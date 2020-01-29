@@ -18,5 +18,10 @@ public class App {
 
         System.out.println("OperatorDemo.foo01()");
         OperatorDemo.foo01();
+
+        System.out.println();
+
+        System.out.println("SchedulersDemo.foo01()");
+        SchedulersDemo.foo01();
     }
 }
