@@ -1,19 +1,27 @@
 package com.sauzny.jkitchen_note.stream;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
-import java.util.IntSummaryStatistics;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
-
-import com.google.common.collect.Lists;
 
 
 public class Test {
 
     public static void main(String[] args) {
+        String b = "b";
+        List<Student> list001 = Lists.newArrayList(
+                new Student(1, "a"),
+                new Student(2, "b"),
+                new Student(3, "c")
+        );
+        list001.stream().filter(s -> s.getName().equalsIgnoreCase(b)).findFirst().ifPresent(list001::remove);
+
+        Sets.newHashSet().add(null);
+
 
         // 空集合的stream
         List<String> elist = Lists.newArrayList();
@@ -39,6 +47,7 @@ public class Test {
         // list.parallelStream();
 
         // map转换数据类型
+        List<String> list0 = new ArrayList<>(list);
         List<Integer> list1 = list.stream().map(value -> Integer.parseInt(value)).collect(Collectors.toList());
         
         // mapToInt转换数据类型  需要boxed
