@@ -1,11 +1,7 @@
 package com.sauzny.jkitchen_note.time;
 
-import java.time.DayOfWeek;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Date;
 
@@ -110,8 +106,11 @@ public class Time {
         LocalDate localDate22 = localDate11.plusMonths(1);
         System.out.println(localDate11);
         System.out.println(localDate22);
-        
-        
+
+
+        String t01 = "2015-05-22T09:29:48";
+        LocalDateTime localDateTime_t01 =  LocalDateTime.from(DateTimeFormatter.ISO_LOCAL_DATE_TIME.parse(t01));
+        System.out.println(localDateTime_t01);
     }
     
     // 01. java.util.Date --> java.time.LocalDateTime
