@@ -1,12 +1,14 @@
 package com.sauzny.jkitchen_note.stream;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 
 public class Test {
@@ -41,6 +43,32 @@ public class Test {
         });
 
         List<String> list = Lists.newArrayList("1","2","3");
+
+        Map<String, Integer> mapA = Maps.newHashMap();
+        for(int i=0; i<list.size(); i++){
+            mapA.put(list.get(i), i);
+        }
+
+        long at = System.nanoTime();
+
+        IntStream.range(1,10000).forEach( o -> {
+            for(int i=0; i<list.size(); i++){
+                if("3".equals(list.get(i))){
+                    break;
+                }
+            }
+        });
+
+        /*
+        IntStream.range(1,10000).forEach( o -> {
+            mapA.get("3");
+        });
+        */
+
+        long bt = System.nanoTime();
+
+
+        System.out.println("两种方式对比耗时："+(bt-at));
 
         // 并行处理 顺序会打乱
         // 与 collect 配合使用，避免出现，元素还没有计算完旧轮询结束
