@@ -34,6 +34,7 @@ public class ThreadExceptionDemo01 {
 
 
     public void foo02() {
+        Thread.setDefaultUncaughtExceptionHandler(new MyUnchecckedExceptionhandler());
         new Thread(new ThreadException()).start();
     }
 
@@ -56,6 +57,7 @@ public class ThreadExceptionDemo01 {
     }
 
     public void foo04(){
+        Thread.setDefaultUncaughtExceptionHandler(new MyUnchecckedExceptionhandler());
         //1.创建线程池
         ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(10, 10, 0L, TimeUnit.MILLISECONDS,
                 new LinkedBlockingQueue<>()) {
@@ -87,9 +89,10 @@ public class ThreadExceptionDemo01 {
 
     public static void main(String[] args) {
         ThreadExceptionDemo01 demo01 = new ThreadExceptionDemo01();
-        demo01.foo00();
+        //demo01.foo00();
         //demo01.foo01();
-        //demo01.foo02();
-        demo01.foo03();
+        demo01.foo02();
+        //demo01.foo03();
+        //demo01.foo04();
     }
 }

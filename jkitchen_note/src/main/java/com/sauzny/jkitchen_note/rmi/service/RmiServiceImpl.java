@@ -4,6 +4,7 @@ import com.sauzny.jkitchen_note.rmi.User;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.concurrent.locks.LockSupport;
 
 public class RmiServiceImpl extends UnicastRemoteObject implements RmiService {
 
@@ -13,10 +14,14 @@ public class RmiServiceImpl extends UnicastRemoteObject implements RmiService {
     }
 
     public String helloWorld() throws RemoteException {
+        System.out.println("helloWorld " + Thread.currentThread().getName());
+        LockSupport.parkNanos(1000*1000*1000L);
         return "Hello World!";
     }
 
     public User getUser() throws RemoteException {
+        System.out.println("getUser " + Thread.currentThread().getName());
+        LockSupport.parkNanos(1000*1000*1000L);
         return new User(1, "obama");
     }
 }

@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /***************************************************************************
  * <pre></pre>
@@ -65,13 +66,12 @@ public class MyExecutor extends Thread {
 
 	public static void main(String args[]) {
 
-
 		MyExecutor myExecutor100 = new MyExecutor(100);
 		myExecutor100.setName("自定义thread" + 100);
 		myExecutor100.start();
 
-
 		ExecutorService service = Executors.newFixedThreadPool(4);
+
 		for (int i = 0; i < 3; i++) {
 			MyExecutor myExecutor = new MyExecutor(i);
 			myExecutor.setName("自定义thread" + i);
