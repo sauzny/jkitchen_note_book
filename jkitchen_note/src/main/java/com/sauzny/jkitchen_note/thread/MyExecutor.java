@@ -1,10 +1,13 @@
 package com.sauzny.jkitchen_note.thread;
 
+import com.google.common.collect.Lists;
+import com.sauzny.jkitchen_note.threadex.MyUnchecckedExceptionhandler;
+
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.*;
+import java.util.concurrent.locks.LockSupport;
 
 /***************************************************************************
  * <pre></pre>
@@ -47,30 +50,48 @@ public class MyExecutor extends Thread {
 
 	public void run() {
 		try {
-			System.out.println(Thread.currentThread().getName() + " [" + this.index + "] start....");
-			Thread.sleep((int) (Math.random() * 10000));
-			System.out.println(Thread.currentThread().getName() + " [" + this.index + "] end.");
 
+			System.out.println(Thread.currentThread().getName() + " [" + this.index + "] start....");
+			//Thread.sleep((int) (Math.random() * 10000));
+			/*
 			Map map=Thread.getAllStackTraces(); //也可以map<Thread, StackTraceElement[]>
 			System.out.println("当前线程数："+map.size());
 			Iterator it=map.keySet().iterator();
 			while (it.hasNext()) {
-				Thread t=(Thread) it.next(); //
+				Thread t = (Thread) it.next(); //
 				System.out.println(t.getName());
 			}
+			*/
+
+			//Thread.sleep(5000L);
+			//LockSupport.parkNanos(5000L);
+			while (true){
+				LockSupport.parkNanos(1);
+				System.out.println("1");
+			}
+
+			//System.out.println(Thread.currentThread().getName() + " [" + this.index + "] end.");
 
 		} catch (Exception e) {
+			System.out.println("exception");
 			e.printStackTrace();
+		} finally {
+			System.out.println("finally");
 		}
+
 	}
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
+		// 设置默认的线程异常捕获处理器
+		//Thread.setDefaultUncaughtExceptionHandler(new MyUnchecckedExceptionhandler());
 
-		MyExecutor myExecutor100 = new MyExecutor(100);
-		myExecutor100.setName("自定义thread" + 100);
-		myExecutor100.start();
+		//MyExecutor myExecutor100 = new MyExecutor(100);
+		///myExecutor100.setName("自定义thread" + 100);
+		//myExecutor100.start();
 
 		ExecutorService service = Executors.newFixedThreadPool(4);
+
+/*
 
 		for (int i = 0; i < 3; i++) {
 			MyExecutor myExecutor = new MyExecutor(i);
@@ -79,7 +100,60 @@ public class MyExecutor extends Thread {
 			// service.submit(new MyExecutor(i));
 			//System.out.println("------------");
 		}
-		System.out.println("submit finish");
-		service.shutdown();
+*/
+
+		//MyExecutor myExecutor = new MyExecutor(1);
+		//myExecutor.setName("自定义thread" + 1);
+		//service.execute(myExecutor);
+		//System.out.println("submit finish");
+		//service.shutdown();
+		//List<Runnable> list = service.shutdownNow();
+		//list.forEach(r -> System.out.println(r.toString()));
+
+		List<Future<Integer>> futureList = Lists.newArrayList();
+
+		for(int i=0; i<10; i++){
+			final int a = i;
+			Future<Integer> future = service.submit(() -> {
+
+				for(int j=0; j<1000; j++){
+					if(j < 0){
+						System.out.println("j");
+					}
+				}
+
+				return a;
+			});
+			futureList.add(future);
+		}
+
+		System.out.println("submit shutdown");
+		service.shutdownNow();
+
+		while(!service.awaitTermination(3, TimeUnit.SECONDS)){
+			System.out.println("service.isTerminated() = " + service.isTerminated());
+		}
+
+		System.out.println("service.isTerminated() = " + service.isTerminated());
+
+		futureList.forEach(future -> {
+			/*
+			while(!future.isDone()){
+				System.out.println("future.isCancelled() = " + future.isCancelled());
+			}
+			*/
+			System.out.println("future.isDone() = " + future.isDone());
+			System.out.println("future.isCancelled() = " + future.isCancelled());
+
+			try {
+
+				int a = future.get();
+				System.out.println("future.get() = " + a);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+		});
 	}
 }
