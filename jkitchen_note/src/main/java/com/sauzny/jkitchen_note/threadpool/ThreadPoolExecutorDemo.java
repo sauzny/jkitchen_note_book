@@ -32,7 +32,64 @@ public class ThreadPoolExecutorDemo {
 
     }
 
+    // 测试 有一个线程 出异常之后，线程池会不会自动重建一个新的线程
+    public static void foo02(){
+
+        // 创建线程池，并设置自定义的统一异常抓捕
+        ThreadPoolExecutor threadPoolExecutor = ThreadPoolExecutors.newFixedThreadPool(4, "我的自定义线程", (thread, e) -> {
+            System.out.println("被搞坏的线程id : " + thread.getId());
+            e.printStackTrace();
+        });
+
+        // 输出线程数
+        System.out.println(threadPoolExecutor.getCorePoolSize());
+
+        // 输出每个线程id
+        for (int i = 0; i < 4; i++) {
+            threadPoolExecutor.execute(() -> {
+                System.out.println(Thread.currentThread().getId());
+                LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(1));
+            });
+        }
+
+        LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(5));
+
+        // 输出线程数
+        System.out.println("===========================================");
+        System.out.println(threadPoolExecutor.getCorePoolSize());
+
+        // 输出每个线程id
+        for (int i = 0; i < 4; i++) {
+            threadPoolExecutor.execute(() -> {
+                System.out.println(Thread.currentThread().getId());
+                LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(1));
+            });
+        }
+
+        // 搞坏一个异常
+        threadPoolExecutor.execute(() -> {
+            Integer.parseInt("aaa");
+        });
+
+
+        // 输出线程数
+        LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(5));
+
+        // 输出每个线程id
+        System.out.println("===========================================");
+        System.out.println(threadPoolExecutor.getCorePoolSize());
+
+        for (int i = 0; i < 4; i++) {
+            threadPoolExecutor.execute(() -> {
+                System.out.println(Thread.currentThread().getId());
+                LockSupport.parkNanos(TimeUnit.SECONDS.toNanos(1));
+            });
+        }
+
+        threadPoolExecutor.shutdown();
+    }
+
     public static void main(String[] args) {
-        ThreadPoolExecutorDemo.foo01();
+        ThreadPoolExecutorDemo.foo02();
     }
 }
