@@ -28,7 +28,7 @@ public class Test {
         // 空集合的stream
         List<String> elist = Lists.newArrayList();
         List<Integer> eilist = elist.stream().map(String::length).collect(Collectors.toList());
-        System.out.println(eilist);
+        System.out.println("空集合的stream : " + eilist);
 
         String values = "1,2,3";
         elist.addAll(Arrays.asList(values.split(",")).stream().map(v -> {
@@ -58,6 +58,10 @@ public class Test {
                 }
             }
         });
+
+        List<Integer> listn = Lists.newArrayList(1, 2, 3);
+
+        listn.stream().min(Integer::compare).get();
 
         /*
         IntStream.range(1,10000).forEach( o -> {

@@ -1,7 +1,6 @@
 package com.sauzny.jkitchen_note.threadpool;
 
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.locks.LockSupport;
 
 public class ThreadPoolExecutorDemo {
@@ -111,7 +110,30 @@ public class ThreadPoolExecutorDemo {
         threadPoolExecutor.shutdown();
     }
 
+    public static void foo03(){
+
+        // 创建线程池，并设置自定义的统一异常抓捕
+        ThreadPoolExecutor threadPoolExecutor = ThreadPoolExecutors.newFixedThreadPool(4, "我的自定义线程", (thread, e) -> {
+            System.out.println("统一异常抓捕:" + e.getMessage());
+            throw new RuntimeException(e);
+        });
+
+        Future<Integer> future = threadPoolExecutor.submit(() -> Integer.parseInt("aaa"));
+
+        try {
+            future.get(3, TimeUnit.SECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            System.out.println("ExecutionException:" + e.getMessage());
+            e.printStackTrace();
+        } catch (TimeoutException e) {
+            System.out.println("TimeoutException:" + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
-        ThreadPoolExecutorDemo.foo02();
+        ThreadPoolExecutorDemo.foo03();
     }
 }
