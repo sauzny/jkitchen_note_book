@@ -24,6 +24,8 @@ public class Test {
 
         Sets.newHashSet().add(null);
 
+        List<String> list002 = Lists.newArrayList("a_b_c", "a_b_c_d", "a_b_c", "a_b_c");
+        list002.stream().distinct().forEach(System.out::println);
 
         // 空集合的stream
         List<String> elist = Lists.newArrayList();
