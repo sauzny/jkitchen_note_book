@@ -3,28 +3,60 @@ package com.sauzny.jkitchen_note;
 import java.io.File;
 import java.io.IOException;
 import java.net.UnknownHostException;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.google.common.primitives.Ints;
+import org.apache.commons.text.StringEscapeUtils;
 
 /**
  * Hello world!
  *
  */
 public class App {
-    
+
+    // JDK11 的 bug，两个写文件的API，一个成功，一个乱码
+    // JDK15 已经修复
+    public static void foo01(){
+
+        try {
+            // UTF_8 的文件
+            Path path2 = Paths.get("F:\\self\\temp\\b.txt");
+
+            String s2 = "严";
+
+            List<String> list = new ArrayList<String>();
+            list.add(s2);
+            list.add("严");
+            list.add("汉");
+
+            // 写入汉字 乱码 （而且能发现 写入是按照 UTF-16 的编码写入的）
+            Files.writeString(path2, s2, StandardCharsets.UTF_8);
+
+            // 写入汉字 正常
+            Files.write(path2, list, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+
+            // 写入汉字 乱码 （而且能发现 写入是按照 UTF-16 的编码写入的）
+            Files.writeString(path2, s2, StandardCharsets.UTF_8, StandardOpenOption.APPEND);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public List<String> listapp;
     
     public static void main(String[] args) throws UnknownHostException, IOException{
-        
+
     	System.out.println(new Date());
     	
         StringBuilder  builder = new StringBuilder();   
@@ -102,6 +134,8 @@ public class App {
          * 加起来刚好 64 位，为一个 Long 型。<br>
          * SnowFlake 的优点是，整体上按照时间自增排序，并且整个分布式系统内不会产生 ID 碰撞(由数据中心 ID 和机器 ID 作区分)，并且效率较高，经测试，SnowFlake 每秒能够产生 26 万 ID 左右。
          */
+
+        App.foo01();
     }
     
     
