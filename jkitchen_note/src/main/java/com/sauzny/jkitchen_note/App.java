@@ -53,8 +53,16 @@ public class App {
     }
 
     public List<String> listapp;
-    
+
+    public static void foo02(long index){
+        index++;
+    }
+
     public static void main(String[] args) throws UnknownHostException, IOException{
+
+        long index = 3;
+        App.foo02(index);
+        System.out.println(index);
 
     	System.out.println(new Date());
     	
