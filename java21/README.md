@@ -170,10 +170,54 @@
 | 414 | Vector API (Second Incubator)                  | 矢量 API (第二个孵化器)     |             |
 | 415 | Context-Specific Deserialization Filters       | 特定于上下文的反序列化过滤器      |             |
 
+## jdk18
+
+| 序号      | 特性                                              | 特性                     | 代码          |
+|---------|-------------------------------------------------|------------------------|-------------|
+| JEP 400 | UTF-8 by Default                                | （默认字符集为 UTF-8）         |             |
+| JEP 408 | Simple Web Server                               | （简易的 Web 服务器）          |             |
+| JEP 413 | Code Snippets in Java API Documentation         | （Java API 文档中的代码片段）    |             |
+| JEP 416 | Reimplement Core Reflection with Method Handles | （使用方法句柄重新实现反射核心）       |             |
+| JEP 417 | Vector                                          | （向量） API（第三次孵化）        | Solution417 |
+| JEP 418 | Internet-Address Resolution                     | （互联网地址解析）SPI           |             |
+| JEP 419 | Foreign Function & Memory API                   | （外部函数和内存 API）（第二次孵化）   |             |
+| JEP 420 | Pattern Matching for switch                     | （switch 模式匹配）（第二次预览）   |             |
+| JEP 421 | Deprecate Finalization for Removal              | （废弃 Finalization 以便删除） |             |
+
+## jdk19
+
+| 序号      | 特性                            | 特性                | 代码          |
+|---------|-------------------------------|-------------------|-------------|
+| JEP 405 | Record Patterns               | （记录模式）（预览）        |             |
+| JEP 422 | Linux/RISC-V Port             |                   |             |
+| JEP 424 | Foreign Function & Memory API | （外部函数和内存 API）（预览） | Solution424 |
+| JEP 425 | Virtual Threads               | （虚拟线程）（预览）        |             |
+| JEP 426 | Vector                        | （向量）API（第四次孵化）    |             |
+| JEP 427 | Pattern Matching for switch   | （switch 模式匹配）     |             |
+| JEP 428 | Structured Concurrency        | （结构化并发）（孵化）       | Solution428 |
+
+## jdk20
+
+| 序号      | 特性                            | 特性                   | 代码 |
+|---------|-------------------------------|----------------------|----|
+| JEP 429 | Scoped Values                 | （作用域值）（第一次孵化）        |    |
+| JEP 432 | Record Patterns               | （记录模式）（第二次预览）        |    |
+| JEP 433 | switch                        | 模式匹配（第四次预览）          |    |
+| JEP 434 | Foreign Function & Memory API | （外部函数和内存 API）（第二次预览） |    |
+| JEP 436 | Virtual Threads               | （虚拟线程）（第二次预览）        |    |
+| JEP 437 | Structured Concurrency        | （结构化并发）(第二次孵化)       |    |
+| JEP 432 |                               | 向量 API（第五次孵化）        |    |
+
 ## jdk21
 
-```java
-/*
-
-*/
-```
+| 序号      | 特性                                        | 特性                     | 代码          |
+|---------|-------------------------------------------|------------------------|-------------|
+| JEP 430 | String Templates                          | （字符串模板）（预览）            |             |
+| JEP 431 | Sequenced Collections                     | （序列化集合）                | Solution431 |
+| JEP 439 | Generational ZGC                          | （分代 ZGC）               |             |
+| JEP 440 | Record Patterns                           | （记录模式）                 | Solution440 |
+| JEP 441 | Pattern Matching for switch               | （switch 的模式匹配）         | Solution441 |
+| JEP 442 | Foreign Function & Memory API             | （外部函数和内存 API）（第三次预览）   |             |
+| JEP 443 | Unnamed Patterns and Variables            | （未命名模式和变量（预览）          |             |
+| JEP 444 | Virtual Threads                           | （虚拟线程）                 | Solution444 |
+| JEP 445 | Unnamed Classes and Instance Main Methods | （未命名类和实例 main 方法 ）（预览） |             |

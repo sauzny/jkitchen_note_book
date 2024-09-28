@@ -4,7 +4,7 @@ package org.example.lab.jdk21;
  * record模式
  */
 
-public class Solution4 {
+public class Solution440 {
 
     // TODO
 

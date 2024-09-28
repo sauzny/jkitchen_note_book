@@ -8,7 +8,7 @@ import java.util.stream.IntStream;
 虚拟线程：创建10000个线程，每个线程被创建出来后休眠1s再结束，计算整个过程用时。
  */
 
-public class Solution1 {
+public class Solution444 {
     public static void main(String[] args) {
         long start = System.currentTimeMillis();
         try(var executor = Executors.newVirtualThreadPerTaskExecutor()){
